@@ -1,0 +1,31 @@
+<!-- template.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Page</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>My Page</h1>
+
+    <button id="ajax-button">Click me!</button>
+    <div id="ajax-response">value show here: </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#ajax-button').click(function() {
+                $.ajax({
+                    url: "{% url 'ajax-url' %}",
+                    success: function(response) {
+                        $('#ajax-response').html(response.message_value);
+                    },
+                    error: function() {
+                        $('#ajax-response').html('An error occurred!');
+                    }
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>
